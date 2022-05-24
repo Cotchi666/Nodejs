@@ -7,7 +7,7 @@ app.get("/", (req, res) => {
     res.json("Home");
 });
 
-app.use("/api/", router1);
+app.use("/api/v1/", router1);
 
 app.listen(3000, () => {
     console.log("server started on port");
