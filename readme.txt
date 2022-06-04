@@ -34,3 +34,6 @@ npx sequelize-cli model:generate --name User --attributes firstName:string,lastN
 npx sequelize-cli db:migrate
 
 👉5. Tạo Seeder: npx sequelize-cli seed:generate --name demo-user
+
+
+npm  install --save bcryptjs@2.4.3
