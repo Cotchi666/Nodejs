@@ -43,72 +43,72 @@ let hashUserPassword = (password) => {
 
   })
 }
-// let getUserInfoById = (useId) => {
-//   return new Promise(async (resolve, rejects) => {
-//     try {
-//       let user = await db.User.findOne({
-//         where: { id: useId },
-//         raw: true,
-//       })
-//       if (user) {
-//         resolve(user);
-//       } else {
-//         resolve({})
-//       }
+let getUserInfoById = (useId) => {
+  return new Promise(async (resolve, rejects) => {
+    try {
+      let user = await db.User.findOne({
+        where: { id: useId },
+        raw: true,
+      })
+      if (user) {
+        resolve(user);
+      } else {
+        resolve({})
+      }
 
-//     } catch (e) {
-//       rejects(e);
-//     }
-//   })
-// }
-// let updateUserData = (data) => {
-//   return new Promise(async (resolve, rejects) => {
-//     try {
-//       let user = await db.User.findOne({
-//         where: { id: data.id },
+    } catch (e) {
+      rejects(e);
+    }
+  })
+}
+let updateUserData = (data) => {
+  return new Promise(async (resolve, rejects) => {
+    try {
+      let user = await db.User.findOne({
+        where: { id: data.id },
 
-//       })
-//       if (user) {
-//         user.firstName = data.firstName;
-//         user.lastName = data.lastName;
-//         user.address = data.address;
-//         await user.save();
-//         let allUsers = await db.User.findOne();
+      })
+      if (user) {
+        user.firstName = data.firstName;
+        user.lastName = data.lastName;
+        user.address = data.address;
+        await user.save();
+        let allUsers = await db.User.findOne();
 
-//         resolve(allUsers);
-//       } else {
-//         resolve({})
-//       }
+        resolve(allUsers);
+      } else {
+        resolve({})
+      }
 
-//     } catch (e) {
-//       rejects(e);
-//     }
-//   })
-// }
-// let deleteUserById = (userId) => {
-//   return new Promise(async (resolve, rejects) => {
-//     try {
-//       let user = await db.User.findOne({
-//         where: { id: userId},
+    } catch (e) {
+      rejects(e);
+    }
+  })
+}
+let deleteUserById = (userId) => {
+  return new Promise(async (resolve, rejects) => {
+    try {
+      let user = await db.User.findOne({
+        where: { id: userId},
 
-//       })
-//       if (user) {
+      })
+      if (user) {
 
-//         await user.destroy();
+        await user.destroy();
 
 
-//       } resolve();
+      } resolve();
 
-//     } catch (e) {
-//       rejects(e);
-//     }
-//   })
-// }
+    } catch (e) {
+      rejects(e);
+    }
+  })
+}
 
 module.exports = {
-  // getUserInfoById: getUserInfoById,
-  // updateUserData: updateUserData,
+  getUserInfoById: getUserInfoById,
+  updateUserData: updateUserData,
   createNewUser: createNewUser,
-  // deleteUserById: deleteUserById,
+  deleteUserById: deleteUserById,
   hashUserPassword: hashUserPassword,
 };
