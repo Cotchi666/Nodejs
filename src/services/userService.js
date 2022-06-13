@@ -129,7 +129,7 @@ let createNewUser = async (data) => {
           where: { id: userId},
   
         })
-        if(foundUser){
+        if(!foundUser){
             resolve({
                 errCode:2,
                 message:"The user is not exist~"
