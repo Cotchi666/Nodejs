@@ -99,24 +99,28 @@ let createNewUser = async (data) => {
           if(check){
               resolve({
                   errCode:1,
-                  message:"Your email is already in used, plz try it again~"
+                  errMessage:"Your email is already in used, plz try it again~"
               })
-          }
 
-        let hashPasswordFormBcrypt = await hashUserPassword(data.password);
-        await db.User.create({
-          email: data.email,
-          password: hashPasswordFormBcrypt,
-          firstName: data.firstName,
-          lastName: data.lastName,
-          address: data.address,
-          phone :data.phone,
-          gender: data.gender === "1" ? true : false,
-          roleId: data.roleId,
-          
-        })
-  
-        resolve("ok");
+          }else{
+            let hashPasswordFormBcrypt = await hashUserPassword(data.password);
+            await db.User.create({
+              email: data.email,
+              password: hashPasswordFormBcrypt,
+              firstName: data.firstName,
+              lastName: data.lastName,
+              address: data.address,
+              phone :data.phone,
+              gender: data.gender === "1" ? true : false,
+              roleId: data.roleId,
+              
+            })
+            resolve({
+                errCode:0,
+                errMessage:"OK"
+            })
+          }
+        
       } catch (e) {
         rejects(e);
       }
