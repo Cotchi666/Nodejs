@@ -167,6 +167,7 @@ let createNewUser = async (data) => {
           where: { id: data.id },
           raw: false
   
+          
         })
         if (user) {
           user.firstName = data.firstName;
