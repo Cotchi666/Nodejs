@@ -6,13 +6,14 @@ const salt = bcrypt.genSaltSync(10);
 let handleUserLogin = (email, password) => {
   return new Promise(async (resolve, reject) => {
     try {
+      //create data user 
       let userData = {};
       let isExist = await checkUserEmail(email);
       if (isExist) {
         //user already exist
         let user = await db.User.findOne({
-          // only getting email roleId password from a obj
-          attributes: ["email", "roleId", "password"],
+          // only getting email roleId password firstName lastName  from a obj
+          attributes: ["email", "roleId", "password","firstName", "lastName"],
           where: { email: email },
           raw: true,
         });
