@@ -110,7 +110,8 @@ let createNewUser = (data) => {
           phone: data.phone,
           gender: data.gender,
           roleId: data.roleId,
-          positionId :data.positionId
+          positionId :data.positionId,
+          image : data.avatar
         });
         resolve({
           errCode: 0,
@@ -165,6 +166,13 @@ let updateUserData = (data) => {
         user.firstName = data.firstName;
         user.lastName = data.lastName;
         user.address = data.address;
+        user.roleId = data.roleId;
+        user.position = data.positionId;
+        user.gender = data.gender;
+        user.phone = data.phone;
+        if(data.avatar){
+          user.image = data.avatar
+        }
         await user.save();
         resolve({
           errCode: 0,
@@ -213,22 +221,6 @@ let getAllCodeService = (typeInput) => {
     }
   });
 };
-
-// let getAllCodeService = () => {
-//   return new Promise(async (resolve, reject) => {
-//     try {
-      
-//         let res = {};
-//         let allcode = await db.Allcode.findAll();
-//         res.errCode = 0;
-//         res.data = allcode;
-//         resolve(res);
-//     } catch (e) {
-//       reject(e);
-//     }
-//   })
-// }
-
 
 module.exports = {
   getAllUsers: getAllUsers,
