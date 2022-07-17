@@ -214,6 +214,20 @@ let getAllCodeService = (typeInput) => {
   });
 };
 
+// let getAllCodeService = () => {
+//   return new Promise(async (resolve, reject) => {
+//     try {
+      
+//         let res = {};
+//         let allcode = await db.Allcode.findAll();
+//         res.errCode = 0;
+//         res.data = allcode;
+//         resolve(res);
+//     } catch (e) {
+//       reject(e);
+//     }
+//   })
+// }
 
 
 module.exports = {
