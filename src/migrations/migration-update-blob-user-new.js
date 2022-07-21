@@ -1,19 +1,20 @@
 module.exports = {
+  //chay khi dung lenh db migration
     up: async (queryInterface, Sequelize) => {
       return Promise.all([
-        queryInterface.changeColum('Users', 'image',{
+        queryInterface.changeColumn('Users', 'image',{
             type: Sequelize.BLOB('long'),
             allowNull: true,
         })
       ])
     },
-    
-    down: async (queryInterface, Sequelize) => {
+    // rollback
+    down:  (queryInterface, Sequelize) => {
         return Promise.all([
-            queryInterface.changeColum('Users', 'image',{
+            queryInterface.changeColumn('Users', 'image',{
                 type: Sequelize.STRING,
                 allowNull: true,
             })
           ])
     }
-  };
+  }; 

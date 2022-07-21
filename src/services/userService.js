@@ -19,11 +19,12 @@ let handleUserLogin = (email, password) => {
         });
         //user found
         if (user) {
-          //compare password
+          //compare password 
           let check = await bcrypt.compareSync(password, user.password);
           if (check) {
             userData.errCode = 0;
             userData.errMessage = "ok";
+            //privacy
             delete user.password;
             userData.user = user;
           } else {
@@ -97,7 +98,7 @@ let createNewUser = (data) => {
       if (check) {
         resolve({
           errCode: 1,
-          errMessage: "Your email is already in used, plz try it again~",
+          errMessage: "Your email is already in use, plz try it again~",
         });
       } else {
         let hashPasswordFormBcrypt = await hashUserPassword(data.password);
@@ -152,7 +153,8 @@ let deleteUser = (userId) => {
 let updateUserData = (data) => {
   return new Promise(async (resolve, rejects) => {
     try {
-      if (!data.id) {
+      // if (!data.id || !data.roleId || !data.position || !data.gender) {
+        if (!data.id){
         resolve({
           errCode: 2,
           message: "Missing required parameters~",
