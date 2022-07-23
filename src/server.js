@@ -24,5 +24,5 @@ let port = process.env.PORT || 3000;
 //chay app
 app.listen(port, () => {
     //callback
-    console.log("Backend Nodejs is runing on the port : " + port)
+    console.log("Backend Nodejs is running on the port : " + port)
 })
