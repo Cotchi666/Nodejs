@@ -6,20 +6,20 @@ const salt = bcrypt.genSaltSync(10);
 let handleUserLogin = (email, password) => {
   return new Promise(async (resolve, reject) => {
     try {
-      //create data user 
+      //create data user
       let userData = {};
       let isExist = await checkUserEmail(email);
       if (isExist) {
         //user already exist
         let user = await db.User.findOne({
           // only getting email roleId password firstName lastName  from a obj
-          attributes: ["email", "roleId", "password","firstName", "lastName"],
+          attributes: ["email", "roleId", "password", "firstName", "lastName"],
           where: { email: email },
           raw: true,
         });
         //user found
         if (user) {
-          //compare password 
+          //compare password
           let check = await bcrypt.compareSync(password, user.password);
           if (check) {
             userData.errCode = 0;
@@ -111,8 +111,8 @@ let createNewUser = (data) => {
           phone: data.phone,
           gender: data.gender,
           roleId: data.roleId,
-          positionId :data.positionId,
-          image : data.avatar
+          positionId: data.positionId,
+          image: data.avatar,
         });
         resolve({
           errCode: 0,
@@ -154,7 +154,7 @@ let updateUserData = (data) => {
   return new Promise(async (resolve, rejects) => {
     try {
       // if (!data.id || !data.roleId || !data.position || !data.gender) {
-        if (!data.id){
+      if (!data.id) {
         resolve({
           errCode: 2,
           message: "Missing required parameters~",
@@ -172,8 +172,8 @@ let updateUserData = (data) => {
         user.position = data.positionId;
         user.gender = data.gender;
         user.phone = data.phone;
-        if(data.avatar){
-          user.image = data.avatar
+        if (data.avatar) {
+          user.image = data.avatar;
         }
         await user.save();
         resolve({
@@ -216,6 +216,7 @@ let getAllCodeService = (typeInput) => {
         });
         res.errCode = 0;
         res.data = allcode;
+        console.log(res.data)
         resolve(res);
       }
     } catch (e) {
@@ -223,6 +224,19 @@ let getAllCodeService = (typeInput) => {
     }
   });
 };
+// let getAllCodeService = (typeInput) => {
+//   return new Promise(async (resolve, reject) => {
+//     try {
+//       let res = {};
+//       let allcode = await db.Allcode.findAll();
+//       res.errCode = 0;
+//       res.data = allcode;
+//       resolve(res);
+//     } catch (e) {
+//       reject(e);
+//     }
+//   });
+// };
 
 module.exports = {
   getAllUsers: getAllUsers,
